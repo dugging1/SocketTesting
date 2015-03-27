@@ -13,7 +13,7 @@ port = 9999
 sb = 'recv\\'
 os.chdir(sb)
 
-s.connect((host, port))
+s.connect(("25.93.84.21", port))
 fln = ""
 size = ""
 strng = ""
