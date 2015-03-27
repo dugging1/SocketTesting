@@ -10,7 +10,7 @@ master = Tk()
 
 serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 port = 9999
-serversocket.bind((socket.gethostname(), port))
+serversocket.bind(("25.198.236.56", port))
 serversocket.listen(5)
 
 sb = '..\\Art\\'
