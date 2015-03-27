@@ -12,7 +12,9 @@ threads = []
 serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 port = 9999
 serversocket.bind((IP, port))
+serversocket.listen(5)
 
+sb = '..\\Art\\'
 
 def program(clientsocket, addr):
     sb = '..\\Art\\'
