@@ -31,7 +31,11 @@ while True:
     f.close()
     break
 
+os.chdir("..")
 root = Tk()
 root.geometry("280x240")
-directory = os.path.join("recv", fln)
-Label = Label(root, image=directory)
+print(fln)
+directory = os.path.join(sb, os.listdir(sb)[0])
+
+Hat = PhotoImage(file=directory)
+Label = Label(root, image=Hat).pack()

@@ -1,5 +1,5 @@
-# ==================================
-# |    THIS IS A TEST! (SERVER)    |
+#==================================
+#|    THIS IS A TEST! (SERVER)    |
 #==================================
 
 import socket
@@ -18,7 +18,7 @@ sb = '..\\Art\\'
 os.chdir(sb)  #path
 
 dirs = os.listdir(sb)  #list of file
-print(dirs)
+#print(dirs)
 
 
 while True:
