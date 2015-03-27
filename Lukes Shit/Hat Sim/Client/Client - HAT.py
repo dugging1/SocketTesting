@@ -7,30 +7,28 @@ from tkinter import *
 import os
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-host = socket.gethostname()
-
+IP = input("IP: ")
 port = 9999
 sb = 'recv\\'
 os.chdir(sb)
 
-s.connect(("25.198.236.56", port))
+s.connect((IP, port))
 fln = ""
 size = ""
 strng = ""
 
-for x in range(2):
-    while True:
-        while fln == "":
-            fln = s.recv(1024).decode("ascii")  #read the name of the file
-        f = open(fln, 'wb')  #create the new file
-        while size == "":
-            size = s.recv(4).decode("utf-8")  #receive the size of the file
-        while strng == "":
-            strng = s.recv(int(size))  #receive the data of the file
-        #if strng:
-        f.write(strng)  #write the file
-        f.close()
-        break
+while True:
+    while fln == "":
+        fln = s.recv(1024).decode("ascii")  #read the name of the file
+    f = open(fln, 'wb')  #create the new file
+    while size == "":
+        size = s.recv(4).decode("utf-8")  #receive the size of the file
+    while strng == "":
+        strng = s.recv(int(size))  #receive the data of the file
+    #if strng:
+    f.write(strng)  #write the file
+    f.close()
+    break
 
 os.chdir("..")
 root = Tk()

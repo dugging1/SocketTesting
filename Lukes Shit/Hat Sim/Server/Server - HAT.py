@@ -5,25 +5,20 @@
 import socket
 from tkinter import *
 import os
+from threading import *
+IP = input("IP: ")
 
-master = Tk()
-
+threads = []
 serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 port = 9999
-serversocket.bind((socket.gethostname(), port))
-serversocket.listen(5)
+serversocket.bind((IP, port))
 
-sb = '..\\Art\\'
 
-os.chdir(sb)  #path
-
-dirs = os.listdir(sb)  #list of file
-#print(dirs)
-
-for x in range(2):
+def program(clientsocket, addr):
+    sb = '..\\Art\\'
+    os.chdir(sb)
+    dirs = os.listdir(sb)
     while True:
-        clientsocket, addr = serversocket.accept()
-        print("Got a connection from %s" % str(addr))
         for file in dirs:
             f = open(file, "rb")  #read image
             l = f.read()
@@ -34,4 +29,12 @@ for x in range(2):
             f.close()
         break
 
-serversocket.close()
+    serversocket.close()
+
+serversocket.listen(5)
+while True:
+    CS, ADDR = serversocket.accept()
+    print("Got a connection from %s" % str(ADDR))
+    t = Thread(target=program, args=(CS, ADDR))
+    threads.append([t, CS, ADDR])
+    t.start()
