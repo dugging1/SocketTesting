@@ -13,7 +13,7 @@ port = 9999
 sb = 'recv\\'
 os.chdir(sb)
 
-s.connect(("25.93.84.21", port))
+s.connect((socket.gethostname(), port))
 fln = ""
 size = ""
 strng = ""
