@@ -1,17 +1,37 @@
-#==================================
+# ==================================
 #|    THIS IS A TEST! (Client)    |
 #==================================
 
 import socket
 from tkinter import *
-root = Tk()
-root.geometry("280x240")
+import os
+
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-host = socket.gethostname()                           
+host = socket.gethostname()
 
 port = 9999
+sb = 'recv\\'
+os.chdir(sb)
 
-s.connect((host, port))                               
+s.connect((host, port))
+fln = ""
+size = ""
+strng = ""
 
-TopHat = s.recv(1024)                                     
-Label = Label(root, image = TopHat.decode)
+while True:
+    while fln == "":
+        fln = s.recv(1024).decode("ascii")  #read the name of the file
+    f = open(fln, 'wb')  #create the new file
+    while size == "":
+        size = s.recv(4).decode("utf-8")  #receive the size of the file
+    while strng == "":
+        strng = s.recv(int(size))  #receive the data of the file
+    #if strng:
+    f.write(strng)  #write the file
+    f.close()
+    break
+
+root = Tk()
+root.geometry("280x240")
+directory = os.path.join("recv", fln)
+Label = Label(root, image=directory)
