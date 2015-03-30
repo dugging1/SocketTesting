@@ -2,6 +2,10 @@
   <dictionary name="dugging">
     <words>
       <w>addr</w>
+      <w>mapdim</w>
+      <w>mapx</w>
+      <w>mapy</w>
+      <w>tileid</w>
     </words>
   </dictionary>
 </component>

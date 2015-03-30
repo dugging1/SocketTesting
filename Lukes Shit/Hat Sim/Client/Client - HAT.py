@@ -13,20 +13,20 @@ sb = 'recv\\'
 os.chdir(sb)
 
 s.connect((IP, port))
+input("Test: ")
 fln = ""
 size = ""
 strng = ""
 
 while True:
     while fln == "":
-        fln = s.recv(1024).decode("ascii")  #read the name of the file
-    f = open(fln, 'wb')  #create the new file
+        fln = s.recv(1024).decode("ascii")
+    f = open(fln, 'wb')
     while size == "":
-        size = s.recv(4).decode("utf-8")  #receive the size of the file
+        size = s.recv(4).decode("utf-8")
     while strng == "":
-        strng = s.recv(int(size))  #receive the data of the file
-    #if strng:
-    f.write(strng)  #write the file
+        strng = s.recv(int(size))
+    f.write(strng)
     f.close()
     break
 
